@@ -22,10 +22,10 @@ ipa_getcert_requested_hostnames:
     cert_location: "{{ monitoring_tls_cert }}"
     postcmd: "/bin/systemctl restart graylog-server"
     cnames:
-      - "graylog.rockylinux.org"
+      - "graylog.cclinux.org"
 
-graylog_ipa_dnsrecord_zone_name: rockylinux.org
+graylog_ipa_dnsrecord_zone_name: cclinux.org
 graylog_ipa_dnsrecord_name: graylog
 graylog_ipa_dnsrecord_record_type: CNAME
-graylog_ipa_dnsrecord_record_value: graylog002.rockylinux.org.
+graylog_ipa_dnsrecord_record_value: graylog002.cclinux.org.
 graylog_ipa_dnsrecord_state: present

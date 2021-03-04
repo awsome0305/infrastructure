@@ -19,6 +19,8 @@ chrony_service_name: chronyd
 
 # log file
 chrony_log_file: /var/log/chrony
+chrony_logdir: /var/log/
+chrony_allow_cidr: "192.168.0.0/16"
 
 # service state
 chrony_service_state: started
@@ -26,8 +28,8 @@ chrony_service_enabled: true
 
 # default internet timeservers to use
 chrony_timeservers:
-  - chrony001.rockylinux.org
-  - chrony002.rockylinux.org
+  - chrony001.cclinux.org
+  - chrony002.cclinux.org
 
 # is chrony ntp server - allows client connections
-chrony_server: false
+chrony_server: true

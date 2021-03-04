@@ -1,17 +1,12 @@
 ---
-# Sets Up Chrony Server/Client
-# Created: @derekmpage
-# Kudos: @danielkubat  @Darkbat91
-# Fixes: @nazunalika
-- name: Rocky Chrony Runbook
-  hosts: all
+# Configures an IPA client for the Circle infrastructure
+# Define "host" as a hostgroup name or a single host
+- name: Configure IPA client
+  hosts: "{{ host }}"
   become: true
   vars_files:
-    - vars/chrony.yml
-
-  # This is to try to avoid the handler issue in pre/post tasks
-  handlers:
-    - import_tasks: handlers/main.yml
+  - vars/vaults/encpass.yml
+  - vars/ipa/ipaclient.yml
 
   pre_tasks:
     - name: Check if ansible cannot be run here
@@ -26,9 +21,15 @@
         success_msg: "We are able to run on this node"
         fail_msg: "/etc/no-ansible exists - skipping run on this node"
 
-  tasks:
-    - name: Configure Chrony
-      import_tasks: tasks/chrony.yml
+    - name: Apply hostname based on inventory name
+      hostname:
+        name: "{{ inventory_hostname }}"
+        use: systemd
+      when: ansible_fqdn != inventory_hostname
+
+  roles:
+    - role: freeipa.ansible_freeipa.ipaclient
+      state: present
 
   post_tasks:
     - name: Touching run file that ansible has ran here

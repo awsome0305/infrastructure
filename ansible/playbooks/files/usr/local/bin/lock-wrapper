@@ -1,5 +1,5 @@
 #!/bin/bash
-# Borrowed from Fedora Infra for Rocky Linux
+# Borrowed from Fedora Infra for Circle Linux
 
 if [ $# -lt 2  ]; then
     echo "Usage: $0 [name] [script]"

@@ -29,8 +29,8 @@
 
 - name: SSH banner
   copy:
-    src: "etc/rockybanner"
-    dest: "/etc/rockybanner"
+    src: "etc/circlebanner"
+    dest: "/etc/circlebanner"
     owner: root
     group: root
     mode: '0644'

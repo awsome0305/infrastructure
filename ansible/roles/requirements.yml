@@ -3,31 +3,31 @@
 roles:
   - name: geerlingguy.mysql
   # monitoring
-  - name: cloudalchemy.node-exporter
+  - name: cloudalchemy.node_exporter
   - name: cloudalchemy.prometheus
   - name: cloudalchemy.alertmanager
   - name: cloudalchemy.grafana
   - name: geerlingguy.gitlab
   - name: geerlingguy.postgresql
-  - name: rockylinux.ipagetcert
-    src: https://github.com/rocky-linux/ansible-role-ipa-getcert
+  - name: circlelinux.ipagetcert
+    src: https://github.com/hxj3315/ansible-role-ipa-getcert
     version: main
-  - name: rockylinux.ipsilon
-    src: https://github.com/rocky-linux/ansible-role-ipsilon
+  - name: circlelinux.ipsilon
+    src: https://github.com/hxj3315/ansible-role-ipsilon
     version: main
-  - name: rockylinux.kojihub
-    src: https://github.com/rocky-linux/ansible-role-kojihub
+  - name: circlelinux.kojihub
+    src: https://github.com/hxj3315/ansible-role-kojihub
     version: main
-  - name: rockylinux.kojid
-    src: https://github.com/rocky-linux/ansible-role-kojid
+  - name: circlelinux.kojid
+    src: https://github.com/hxj3315/ansible-role-kojid
     version: main
-  - name: rockylinux.rabbitmq
-    src: https://github.com/rocky-linux/ansible-role-rabbitmq
+  - name: circlelinux.rabbitmq
+    src: https://github.com/hxj3315/ansible-role-rabbitmq
     version: main
-  - name: rockylinux.sigul
-    src: https://github.com/rocky-linux/ansible-role-sigul
+  - name: circlelinux.sigul
+    src: https://github.com/hxj3315/ansible-role-sigul
     version: main
-  - name: rockylinux.matterbridge
+  - name: circlelinux.matterbridge
     src: https://github.com/NeilHanlon/ansible-role-matterbridge
     version: master
 
@@ -43,7 +43,7 @@ collections:
   - name: netbox.netbox
   - name: community.aws
   - name: containers.podman
-# - name: rockylinux.taiga
-#   source: https://github.com/rocky-linux/taiga-ansible.git
+# - name: circlelinux.taiga
+#   source: https://github.com/hxj3315/taiga-ansible.git
 #   type: git
 #   version: master

@@ -1,18 +1,16 @@
 ---
-# Creates the first monitoring server
+# Configure and setup graylog
 # Reccommended specs
 # CPU: 2 cores
-# Memory: 2GB
-# Storage: a piece of string
-- name: Install Prometheus
-  hosts: monitoringservers
+# Memory: 4GB
+# Storage: Yes
+- name: Install Graylog
+  hosts: graylogservers
   become: true
   vars_files:
     - vars/vaults/encpass.yml
-    - vars/monitoring.yml
-    - vars/monitoring/alertmanager.yml
-    - vars/monitoring/grafana.yml
-    - vars/monitoring/prometheus.yml
+    - vars/graylog.yml
+    - vars/vaults/hostman.yml
 
   # This is to try to avoid the handler issue in pre/post tasks
   handlers:
@@ -36,14 +34,18 @@
         name: python3-policycoreutils.noarch
         state: present
 
+    - name: "Creating DNS Record for ord-prod-graylog.cclinux.org"
+      freeipa.ansible_freeipa.ipadnsrecord:
+        ipaadmin_principal: "{{ ipa_admin|default('admin') }}"
+        ipaadmin_password: "{{ ipaadmin_password }}"
+        zone_name: "{{ graylog_ipa_dnsrecord_zone_name }}"
+        name: "{{ graylog_ipa_dnsrecord_name }}"
+        record_type: "{{ graylog_ipa_dnsrecord_record_type }}"
+        record_value: "{{ graylog_ipa_dnsrecord_record_value }}"
+        state: "{{ graylog_ipa_dnsrecord_state }}"
+
   roles:
-    - role: rockylinux.ipagetcert
-      state: present
-    - role: cloudalchemy.prometheus
-      state: present
-    - role: cloudalchemy.alertmanager
-      state: present
-    - role: cloudalchemy.grafana
+    - role: circlelinux.ipagetcert
       state: present
 
   post_tasks:
@@ -52,7 +54,7 @@
         port: "{{ item.port }}"
         permanent: "{{ item.permanent }}"
         state: "{{ item.state }}"
-      loop: "{{ monitoring_server_firewall_rules }}"
+      loop: "{{ graylog_server_firewall_rules }}"
 
     - name: Touching run file that ansible has ran here
       file:
@@ -61,24 +63,3 @@
         mode: '0644'
         owner: root
         group: root
-
-- name: Install Prometheus Node Exporter
-  hosts: all
-  become: true
-
-  pre_tasks:
-    - name: Install SELinux packages
-      package:
-        name: python3-policycoreutils.noarch
-        state: present
-
-  roles:
-    - role: cloudalchemy.node-exporter
-      state: present
-
-  post_tasks:
-    - name: Open firewall for node-exporter
-      ansible.posix.firewalld:
-        port: 9100/tcp
-        permanent: true
-        state: enabled

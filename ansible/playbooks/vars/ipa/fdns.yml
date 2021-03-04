@@ -1,4 +1,3 @@
 ---
 fdns:
-  - rockylinux.org.
-  - aws.rockylinux.org.
+  - cclinux.org.

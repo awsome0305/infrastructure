@@ -1,6 +1,6 @@
 # Remote servers for client association.
 {% for s in chrony_timeservers %}
-server {{ s }} iburst {% if loop.first %}prefer{% endif %}
+server {{ s }} iburst {% if loop.first %}prefer{% endif %}{{''}}
 {% endfor %}
 
 # Ignore stratum in source selection.

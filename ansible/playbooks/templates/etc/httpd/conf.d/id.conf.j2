@@ -6,16 +6,16 @@ WSGIScriptAlias /KdcProxy /usr/lib/python3.6/site-packages/kdcproxy/__init__.py
 WSGIScriptReloading Off
 
 <VirtualHost *:80>
-  ServerName accounts.rockylinux.org
-  ServerAlias accounts.rockylinux.org {{ ansible_fqdn }}
+  ServerName accounts.cclinux.org
+  ServerAlias accounts.cclinux.org {{ ansible_fqdn }}
   RewriteEngine On
   RewriteCond %{HTTPS}  !=on
   RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 </VirtualHost>
 
 <VirtualHost *:443>
-  ServerName accounts.rockylinux.org
-  ServerAlias accounts.rockylinux.org {{ ansible_fqdn }}
+  ServerName accounts.cclinux.org
+  ServerAlias accounts.cclinux.org {{ ansible_fqdn }}
   RequestHeader set X-Forwarded-Proto https
   SSLCertificateFile /etc/pki/tls/certs/noggin.crt
   SSLCertificateKeyFile /etc/pki/tls/private/noggin.key
@@ -45,4 +45,4 @@ WSGIScriptReloading Off
 
 ServerSignature Off
 ServerTokens Prod
-ErrorDocument 403 "<h3>Your IP is on the blacklist.</h3><p>Please contact <a href="mailto:infrastructure@rockylinux.org">Rocky Linux Staff</a> to see if this can be corrected.</p>"
+ErrorDocument 403 "<h3>Your IP is on the blacklist.</h3><p>Please contact <a href="mailto:infrastructure@cclinux.org">Circle Linux Staff</a> to see if this can be corrected.</p>"

@@ -6,8 +6,8 @@
   vars_files:
   - vars/vaults/encpass.yml
   - vars/common.yml
-  - vars/staging/kojihub.yml
-  - vars/staging/koji-common.yml
+  - vars/production/kojihub.yml
+  - vars/production/koji-common.yml
 
   # This is to try to avoid the handler issue in pre/post tasks
   handlers:
@@ -80,14 +80,14 @@
       tags:
         - packages
 
-    - name: Install rocky-tools copr
+    - name: Install circle-tools copr
       yum_repository:
-        name: copr:copr.fedorainfracloud.org:nalika:rockylinux-tool
-        description: Copr repo for rockylinux-tools owned by nalika
+        name: copr:copr.fedorainfracloud.org:nalika:circlelinux-tool
+        description: Copr repo for circlelinux-tools owned by nalika
         file: copr_repos
-        baseurl: https://download.copr.fedorainfracloud.org/results/nalika/rockylinux-tools/epel-8-$basearch/
+        baseurl: https://download.copr.fedorainfracloud.org/results/nalika/circlelinux-tools/epel-8-$basearch/
         gpgcheck: true
-        gpgkey: https://download.copr.fedorainfracloud.org/results/nalika/rockylinux-tools/pubkey.gpg
+        gpgkey: https://download.copr.fedorainfracloud.org/results/nalika/circlelinux-tools/pubkey.gpg
         enabled: true
 
   # Right now, we are not sure how or where we'll get our certificates. So we
@@ -99,7 +99,7 @@
       state: present
       when: not koji_internal_ca
 
-    - role: rockylinux.ipagetcert
+    - role: circlelinux.ipagetcert
       state: present
       when: koji_internal_ca
 
@@ -107,7 +107,7 @@
       state: present
       when: koji_postgresql_vm
 
-    - role: rockylinux.kojihub
+    - role: circlelinux.kojihub
       state: present
 
   post_tasks:

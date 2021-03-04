@@ -1,7 +1,7 @@
 ---
 # koji hub settings
 # This should be the front-facing URL of koji
-#koji_url_name: kojistg.rockylinux.org
+#koji_url_name: kojistg.cclinux.org
 
 # Use an internal CA (IPA)
 koji_internal_ca: true
@@ -29,51 +29,51 @@ koji_web_tls_key: "/etc/pki/tls/private/{{ ansible_fqdn }}.key"
 # Kojira
 koji_kojira: true
 koji_kojira_user: kojira
-koji_kojira_user_kerb: kojira/kojistg.rockylinux.org
-koji_kojira_principal: kojira/kojistg.rockylinux.org@ROCKYLINUX.ORG
+koji_kojira_user_kerb: kojira/kojistg.cclinux.org
+koji_kojira_principal: kojira/kojistg.cclinux.org@CCLINUX.ORG
 koji_kojira_keytab: /etc/keytabs/kojira.keytab
 
 # MBS
 koji_mbs: true
 koji_mbs_user: mbs
-koji_mbs_user_kerb: mbs/mbs.rockylinux.org
-koji_mbs_principal: mbs/mbs.rockylinux.org@ROCKYLINUX.ORG
+koji_mbs_user_kerb: mbs/mbs.cclinux.org
+koji_mbs_principal: mbs/mbs.cclinux.org@CCLINUX.ORG
 koji_mbs_keytab: /etc/keytabs/mbs.keytab
 
 # GC
 koji_gc_keytab: /etc/keytabs/koji-gc.keytab
-koji_gc_principal: koji-gc/kojistg.rockylinux.org@ROCKYLINUX.ORG
+koji_gc_principal: koji-gc/kojistg.cclinux.org@CCLINUX.ORG
 
 # Sigul
 koji_sigul: true
 koji_sigul_user: sigul
-koji_sigul_user_kerb: sigul/sigul.rockylinux.org
-koji_sigul_principal: sigul/sigul.rockylinux.org@ROCKYLINUX.ORG
+koji_sigul_user_kerb: sigul/sigul.cclinux.org
+koji_sigul_principal: sigul/sigul.cclinux.org@CCLINUX.ORG
 
 # NFS? We need a place.
 koji_nfs: false
 koji_mount: /mnt/koji
-koji_nfs_path: nfs.rockylinux.org:/export/koji
+koji_nfs_path: nfs.cclinux.org:/export/koji
 
 # Koji Admin Settings
 koji_admin_client: true
-koji_admin_user: rockykoji
-koji_admin_principal: rockykoji@ROCKYLINUX.ORG
+koji_admin_user: circlekoji
+koji_admin_principal: circlekoji@CCLINUX.ORG
 koji_admin_localuser: true
 koji_admin_localuser_name: koji
 
 # Hub Settings
-koji_hub_principal: "host/kojihub@ROCKYLINUX.ORG"
-koji_hub_proxy_principals: "HTTP/{{ inventory_hostname }}@ROCKYLINUX.ORG"
+koji_hub_principal: "host/kojihub@CCLINUX.ORG"
+koji_hub_proxy_principals: "HTTP/{{ inventory_hostname }}@CCLINUX.ORG"
 koji_hub_keytab: /etc/keytabs/host.keytab
-koji_hub_principal_format: compile/%s@ROCKYLINUX.ORG
+koji_hub_principal_format: compile/%s@CCLINUX.ORG
 # This should be sufficient even for LE
 koji_hub_ca: "{{ koji_web_cacert }}"
 
 # Koji FAS Syncing
 # This isn't implemented yet in the role
 koji_fas_sync: false
-koji_fas_url: https://accounts.rockylinux.org
+koji_fas_url: https://accounts.cclinux.org
 
 # IPA Certs if Required
 ipa_getcert_requested_hostnames:

@@ -3,96 +3,96 @@ ipagroups:
   - group: infrastructure
     description: Infrastructure Team
     user:
-      - label
-      - neil
-      - rlh
-      - rfelsburg
-      - tg
-      - bagner
+      - awsomehan
+      - allen
+      - bella
+      - navigator
+      - james
+      - rouzer
   - group: operations
     description: Operations Team
     user:
-      - rlh
-      - rfelsburg
+      - bella
+      - navigator
   - group: development
     description: Development Team
   - group: qa
     description: Quality Assurance Team
   - group: marketing
     description: Marketing
-  - group: rocky
-    description: Rocky Linux Team
+  - group: circle
+    description: Circle Linux Team
     user:
-      - label
-      - gmk
-      - brian
-      - hbjy
-      - jorp
-      - neil
-      - rlh
-      - rfelsburg
-      - tg
-      - bagner
-  - group: rockyadm
-    description: Rocky Linux Administrators - Only Admin Accounts
+      - awsomehan
+      - euroford
+      - victory
+      - unikris
+      - earthloong
+      - allen
+      - bella
+      - navigator
+      - james
+      - rouzer
+  - group: circleadm
+    description: Circle Linux Administrators - Only Admin Accounts
     user:
-      - label2
-      - gmk2
-      - brian2
-      - hbjy2
-      - jorp2
-      - neil2
-      - rlh2
-      - rfelsburg2
-      - tg2
-      - bagner2
+      - awsomehan666
+      - euroford666
+      - victory666
+      - unikris666
+      - earthloong666
+      - allen666
+      - bella666
+      - navigator666
+      - james666
+      - rouzer666
   - group: gitadm
-    description: Rocky Linux GitLab Admins
+    description: Circle Linux GitLab Admins
     user:
-      - label
-      - neil
-      - rlh
-      - rfelsburg
-      - tg
-      - hbjy
+      - awsomehan
+      - allen
+      - bella
+      - navigator
+      - james
+      - unikris
   - group: gitusers
-    description: Rocky Linux GitLab Users
+    description: Circle Linux GitLab Users
     user:
-      - label
-      - neil
-      - rlh
-      - rfelsburg
-      - tg
-      - hbjy
-      - rockyautomation
+      - awsomehan
+      - allen
+      - bella
+      - navigator
+      - james
+      - unikris
+      - circleautomation
     managers_users:
-      - label
-      - neil
-      - rlh
-      - rfelsburg
-      - tg
-      - hbjy
+      - awsomehan
+      - allen
+      - bella
+      - navigator
+      - james
+      - unikris
   - group: services
-    description: Rocky Linux Service Accounts
+    description: Circle Linux Service Accounts
     user:
       - userman
       - hostman
       - kerbman
-      - rockykoji
+      - circlekoji
       - pubsub_federation
-      - rockypubsub
-      - rockyautomation
+      - circlepubsub
+      - circleautomation
   - group: iam
-    description: Rocky Linux Identity Management
+    description: Circle Linux Identity Management
     user:
-      - label
+      - awsomehan
     managers_users:
-      - label
+      - awsomehan
   - group: releng
-    description: Rocky Linux Release Engineering
+    description: Circle Linux Release Engineering
     user:
-      - label
+      - awsomehan
     managers_users:
-      - label
+      - awsomehan
   - group: mq_pub_readonly
     description: RabbitMQ ReadOnly

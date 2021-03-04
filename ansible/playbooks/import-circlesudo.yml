@@ -1,12 +1,12 @@
 ---
 # Currently only one SUDO role should be created, and that is for the
-# rocky linux admins
-- name: "Creating SUDO Role for Rocky Admins"
+# circle linux admins
+- name: "Creating SUDO Role for Circle Admins"
   freeipa.ansible_freeipa.ipasudorule:
     ipaadmin_password: "{{ ipaadmin_password }}"
-    name: All_RockyAdmins
-    description: Rocky Linux infrastructure and operations sudo access
+    name: All_CircleAdmins
+    description: Circle Linux infrastructure and operations sudo access
     group:
-      - rockyadm
+      - circleadm
     hostcat: all
     cmdcat: all

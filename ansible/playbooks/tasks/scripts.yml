@@ -1,5 +1,5 @@
 ---
-# Common scripts that rocky uses on nodes
+# Common scripts that circle uses on nodes
 - name: Lock Wrapper script
   copy:
     src: "usr/local/bin/lock-wrapper"

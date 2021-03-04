@@ -1,7 +1,7 @@
 ---
 # IPA Server
-ipaserver_domain: rockylinux.org
-ipaserver_realm: ROCKYLINUX.ORG
+ipaserver_domain: cclinux.org
+ipaserver_realm: CCLINUX.ORG
 ipaserver_setup_dns: true
 ipaserver_setup_kra: true
 ipaserver_auto_forwarders: true

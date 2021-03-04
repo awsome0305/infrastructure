@@ -21,10 +21,10 @@
         fail_msg: "/etc/no-ansible exists - skipping run on this node"
 
   tasks:
-    - name: Deploy Rocky Noggin Theme
+    - name: Deploy Circle Noggin Theme
       git:
-        repo: https://github.com/rocky-linux/noggin-theme.git
-        dest: /opt/noggin/noggin/noggin/themes/rocky
+        repo: https://github.com/circle-linux/noggin-theme.git
+        dest: /opt/noggin/noggin/noggin/themes/circle
         update: true
         version: main
       become_user: noggin

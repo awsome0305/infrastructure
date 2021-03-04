@@ -1,11 +1,13 @@
 ---
-# Creates an IPA replica
-# Define "host" as a hostgroup name or a single host
-- name: Configure IPA server
-  hosts: "{{ host }}"
+# Sets Up Chrony Server/Client
+# Created: @derekmpage
+# Kudos: @danielkubat  @Darkbat91
+# Fixes: @nazunalika
+- name: Circle Chrony Runbook
+  hosts: all
   become: true
   vars_files:
-  - vars/vaults/encpass.yml
+    - vars/chrony.yml
 
   # This is to try to avoid the handler issue in pre/post tasks
   handlers:
@@ -24,24 +26,9 @@
         success_msg: "We are able to run on this node"
         fail_msg: "/etc/no-ansible exists - skipping run on this node"
 
-    - name: Ensure 'dns=none' is set for Network Manager
-      ini_file:
-        path: /etc/NetworkManager/NetworkManager.conf
-        state: present
-        no_extra_spaces: true
-        section: main
-        option: dns
-        value: none
-        owner: root
-        group: root
-        mode: '0644'
-        backup: true
-      notify:
-        - reload_networkmanager
-
-  roles:
-    - role: freeipa.ansible_freeipa.ipareplica
-      state: present
+  tasks:
+    - name: Configure Chrony
+      import_tasks: tasks/chrony.yml
 
   post_tasks:
     - name: Touching run file that ansible has ran here

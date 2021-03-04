@@ -1,17 +1,17 @@
 ---
 # Vars for ipsilon
-ipsilon_fqdn: accounts.rockylinux.org
+ipsilon_fqdn: accounts.cclinux.org
 ipsilon_databases:
-  - name: rockyipsilon
+  - name: circleipsilon
 
 ipsilon_database_users:
   - name: ipsilon
     host: "localhost"
     password: "{{ ipsilon_db_password }}"
-    priv: "rockyipsilon.*:ALL"
+    priv: "circleipsilon.*:ALL"
 
 ipsilon_db_user: ipsilon
-ipsilon_db_name: rockyipsilon
+ipsilon_db_name: circleipsilon
 ipsilon_httpd_hostname: "{{ inventory_hostname }}"
 
 # apache configuration for ipsilon
@@ -28,7 +28,7 @@ apache_ignore_missing_ssl_certificate: true
 apache_vhosts:
   - servername: "{{ ipsilon_fqdn }}"
     documentroot: /var/www/html
-    serveradmin: identitymanagement@rockylinux.org
+    serveradmin: identitymanagement@cclinux.org
     extra_parameters: |
       CustomLog logs/{{ ipsilon_fqdn }}_access.log combined
       ErrorLog logs/{{ ipsilon_fqdn }}_error.log
@@ -43,7 +43,7 @@ apache_vhosts:
       RewriteRule ^/?(.*) https://{{ ipsilon_fqdn }}/$1 [R,L]
   - servername: "{{ ipsilon_fqdn }}"
     documentroot: /var/www/html
-    serveradmin: identitymanagement@rockylinux.org
+    serveradmin: identitymanagement@cclinux.org
     extra_parameters: |
       RewriteEngine On
       RewriteCond $1 !^idp
@@ -62,4 +62,4 @@ apache_vhosts:
         SSLOptions +StdEnvVars
       </Directory>
       SetEnvIf User-Agent ".*MSIE.*"  nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
-      CustomLog logs/ssl-seven.rockylinux.org.org_request.log "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+      CustomLog logs/ssl-seven.cclinux.org.org_request.log "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"

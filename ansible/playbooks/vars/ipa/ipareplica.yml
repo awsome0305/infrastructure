@@ -3,8 +3,8 @@
 ipaadmin_principal: admin
 ipaclient_no_ntp: true
 ipaclient_mkhomedir: true
-ipaserver_realm: ROCKYLINUX.ORG
-ipareplica_domain: rockylinux.org
+ipaserver_realm: CCLINUX.ORG
+ipareplica_domain: cclinux.org
 ipareplica_auto_forwarders: true
 ipareplica_setup_firewalld: true
 ipareplica_setup_ca: true

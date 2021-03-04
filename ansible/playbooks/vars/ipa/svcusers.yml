@@ -18,7 +18,7 @@ svcusers:
     password: ThisIsNotMyPassword1!
     title: System Account - User Manager
     loginshell: /sbin/nologin
-  - name: rockykoji
+  - name: circlekoji
     first: Koji
     last: Manager
     password: ThisIsNotMyPassword1!
@@ -30,14 +30,14 @@ svcusers:
     password: ThisIsNotMyPassword1!
     title: System Account - pubsub federator
     loginshell: /sbin/nologin
-  - name: rockypubsub
-    first: rocky
+  - name: circlepubsub
+    first: circle
     last: pubsub
     password: ThisIsNotMyPassword1!
     title: System Account - pubsub
     loginshell: /sbin/nologin
-  - name: rockyautomation
-    first: Rocky
+  - name: circleautomation
+    first: Circle
     last: Automation
     password: ThisIsNotMyPassword1!
     title: System Account - Automation

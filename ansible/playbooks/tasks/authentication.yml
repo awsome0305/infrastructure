@@ -19,12 +19,12 @@
   block:
     - name: Ensure Custom Profile is removed
       file:
-        path: /etc/authselect/custom/sssd-rocky
+        path: /etc/authselect/custom/sssd-circle
         state: absent
 
     - name: Create custom authselect profile based on sssd
       command: >
-        /usr/bin/authselect create-profile sssd-rocky
+        /usr/bin/authselect create-profile sssd-circle
         --base-on sssd
         --symlink-dconf
         --symlink-meta
@@ -35,18 +35,18 @@
 
     - name: Override system-auth and password-auth
       copy:
-        src: "etc/authselect/custom/sssd-rocky/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}-system-auth"
+        src: "etc/authselect/custom/sssd-circle/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}-system-auth"
         dest: "{{ item }}"
         owner: root
         group: root
         mode: '0644'
       loop:
-        - /etc/authselect/custom/sssd-rocky/system-auth
-        - /etc/authselect/custom/sssd-rocky/password-auth
+        - /etc/authselect/custom/sssd-circle/system-auth
+        - /etc/authselect/custom/sssd-circle/password-auth
 
     - name: Select New Profile
       command: >
-        /usr/bin/authselect select custom/sssd-rocky
+        /usr/bin/authselect select custom/sssd-circle
         without-nullok
         with-faillock
         with-mkhomedir

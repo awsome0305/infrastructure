@@ -1,5 +1,5 @@
 ---
-# This builds out the initial users and groups for the rocky linux infra
+# This builds out the initial users and groups for the circle linux infra
 - name: Create our initial users
   hosts: ipaserver
   become: true
@@ -23,13 +23,13 @@
         fail_msg: "We are missing users or ipa admin password"
 
     - name: "Start users"
-      import_tasks: import-rockyusers.yml
+      import_tasks: import-circleusers.yml
 
     - name: "Start groups"
-      import_tasks: import-rockygroups.yml
+      import_tasks: import-circlegroups.yml
 
     - name: "Start sudo for admins"
-      import_tasks: import-rockysudo.yml
+      import_tasks: import-circlesudo.yml
 
     - name: "Start privileges for services"
-      import_tasks: import-rockyipaprivs.yml
+      import_tasks: import-circleipaprivs.yml

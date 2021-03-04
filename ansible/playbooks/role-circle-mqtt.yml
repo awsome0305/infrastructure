@@ -1,16 +1,11 @@
 ---
-# Creates the first server for an IPA infrastructure
-# Recommended specs for the IPA systems, that scale based on number of objects:
-# CPU: 2 cores
-# Memory: 4GB
-# Storage: 10G /var/lib/dirsrv
-# System fully up to date
-# Define "host" as a hostgroup name or a single host
-- name: Configure IPA server
-  hosts: "{{ host }}"
+# Stands up an mqtt instance
+- name: Configure mqtt
+  hosts: kojihub
   become: true
   vars_files:
   - vars/vaults/encpass.yml
+  - vars/mqtt.yml
 
   # This is to try to avoid the handler issue in pre/post tasks
   handlers:
@@ -29,23 +24,31 @@
         success_msg: "We are able to run on this node"
         fail_msg: "/etc/no-ansible exists - skipping run on this node"
 
-    - name: Ensure 'dns=none' is set for Network Manager to avoid change
+    # EPEL and PowerTools are required for ipsilon to function
+    # I also couldn't find an ansible built-in to do this
+    - name: Enable the PowerTools repository
       ini_file:
-        path: /etc/NetworkManager/NetworkManager.conf
-        state: present
-        no_extra_spaces: true
-        section: main
-        option: dns
-        value: none
+        dest: /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
+        section: powertools
+        option: enabled
+        value: 1
         owner: root
         group: root
         mode: '0644'
-        backup: true
-      notify:
-        - reload_networkmanager
+
+    # The CentOS extras repos has epel-release provided
+    - name: Enable the EPEL repository
+      yum:
+        name: epel-release
+        state: present
+      tags:
+        - packages
 
   roles:
-    - role: freeipa.ansible_freeipa.ipaserver
+    - role: circlelinux.ipagetcert
+      state: present
+
+    - role: circlelinux.mqtt
       state: present
 
   post_tasks:
@@ -56,8 +59,3 @@
         mode: '0644'
         owner: root
         group: root
-
-    - name: Turn on reverse zone syncing
-      freeipa.ansible_freeipa.ipadnsconfig:
-        ipaadmin_password: '{{ ipaadmin_password }}'
-        allow_sync_ptr: true

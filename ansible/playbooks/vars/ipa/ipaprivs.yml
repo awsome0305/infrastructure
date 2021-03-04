@@ -34,7 +34,7 @@ iparoles:
     user:
       - kerbman
   - role: IPA User Managers
-    description: Rocky IPA User Managers responsible for idm flow
+    description: Circle IPA User Managers responsible for idm flow
     privileges:
       - "Group Administrators"
       - "Stage User Administrators"

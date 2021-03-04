@@ -14,5 +14,5 @@ mantis_pkg:
 mantis_db_name: mantis
 mantis_db_user: mantis
 #mantis_db_pass: ThisIsNotThePassword!
-mantis_binder_user: "uid=mantis_binder,cn=sysaccounts,cn=etc,dc=rockylinux,dc=org"
+mantis_binder_user: "uid=mantis_binder,cn=sysaccounts,cn=etc,dc=cclinux,dc=org"
 #mantis_binder_pass: ThisIsNotThePassword!

@@ -34,7 +34,7 @@
 
 - name: Command line defaults
   copy:
-    dest: "/etc/default/grub.d/99-rocky.cfg"
+    dest: "/etc/default/grub.d/99-circle.cfg"
     owner: root
     group: root
     mode: '0644'

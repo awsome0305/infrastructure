@@ -1,72 +1,72 @@
 ---
 users:
-  - name: label
-    first: Louis
-    last: Abel
-    email: label@rockylinux.org
+  - name: awsomehan
+    first: Awsome
+    last: Han
+    email: awsomehan@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Infrastructure IdM Manager
     loginshell: /bin/bash
-  - name: gmk
-    first: Gregory
-    last: Kurtzer
-    email: gmk@rockylinux.org
+  - name: euroford
+    first: Jack
+    last: An
+    email: euroford@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Executive Director
     loginshell: /bin/bash
-  - name: brian
-    first: Brian
-    last: Clemens
-    email: brian@rockylinux.org
+  - name: victory
+    first: Victory
+    last: Du
+    email: duys@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Project Manager
     loginshell: /bin/bash
-  - name: hbjy
-    first: Hayden
-    last: Young
-    email: hbjy@rockylinux.org
+  - name: unikris
+    first: Unikris
+    last: Wu
+    email: unikris@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Web & Branding Manager
     loginshell: /bin/bash
-  - name: jorp
-    first: Jordan
-    last: Pisaniello
-    email: jorp@rockylinux.org
+  - name: earthloong
+    first: Earthloong
+    last: Li
+    email: earthloong@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Community Manager
     loginshell: /bin/bash
-  - name: neil
-    first: Neil
-    last: Hanlon
-    email: neil@rockylinux.org
+  - name: allen
+    first: Allen
+    last: Wu
+    email: allen@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Infrastructure Manager
     loginshell: /bin/bash
-  - name: rlh
-    first: R. Leigh
-    last: Hennig
-    email: rlh@rockylinux.org
+  - name: bella
+    first: Bella
+    last: Zhang
+    email: bella@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Operations Manager
     loginshell: /bin/bash
-  - name: rfelsburg
-    first: Rob
-    last: Felsburg
-    email: rfelsburg@rockylinux.org
+  - name: navigator
+    first: Navigator
+    last: Wang
+    email: navigator@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Operations Manager
     loginshell: /bin/bash
-  - name: tg
-    first: Taylor
-    last: Goodwill
-    email: tg@rockylinux.org
+  - name: james
+    first: James
+    last: Xie
+    email: james@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Infrastructure Manager
     loginshell: /bin/bash
-  - name: bagner
-    first: Benjamin
-    last: Agner
-    email: bagner@rockylinux.org
+  - name: rouzer
+    first: Rouzer
+    last: Zhou
+    email: rouzer@cclinux.org
     password: ThisIsNotMyPassword1!
     title: Security Director
     loginshell: /bin/bash

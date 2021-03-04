@@ -1,12 +1,12 @@
 ---
-# Stands up a RabbitMQ Cluster
-- name: Configure RabbitMQ
-  hosts: rabbitmq
+# Stands up an ipsilon instance for simple SSO
+- name: Configure Sigul Bridge
+  hosts: sigulbridge
   become: true
   vars_files:
-  - vars/common.yml
   - vars/vaults/encpass.yml
-  - vars/rabbitmq.yml
+  - vars/common.yml
+  - vars/sigul_bridge.yml
 
   # This is to try to avoid the handler issue in pre/post tasks
   handlers:
@@ -25,10 +25,18 @@
         success_msg: "We are able to run on this node"
         fail_msg: "/etc/no-ansible exists - skipping run on this node"
 
-    # We have separate passwords per rabbitmq env
-    - name: Import rabbitmq passwords
-      include_vars:
-        file: "vars/vaults/rabbitmq_{{ rabbitmq_env }}.yml"
+    - name: Check for keytabs - sigul
+      stat:
+        path: /etc/sigul.keytab
+      register: sigul_keytab_register
+      changed_when: "1 != 1"
+
+    - name: Verify keytab
+      assert:
+        that:
+          - "sigul_keytab_register.stat.exists"
+        success_msg: "It is likely we have all keytabs"
+        fail_msg: "There are no keytabs. Please build the keytabs."
 
     # EPEL and PowerTools are required for ipsilon to function
     # I also couldn't find an ansible built-in to do this
@@ -50,24 +58,30 @@
       tags:
         - packages
 
-    # This will change eventually to a rocky-release-messaging repo or to a
-    # rocky-release-rabbitmq repo
-    - name: Install centos rabbitmq
-      yum:
-        name: centos-release-rabbitmq-38
-        state: present
-      tags:
-        - packages
+    - name: Install circle-tools copr
+      yum_repository:
+        name: copr:copr.fedorainfracloud.org:nalika:circlelinux-tool
+        description: Copr repo for circlelinux-tools owned by nalika
+        file: copr_repos
+        baseurl: https://download.copr.fedorainfracloud.org/results/nalika/circlelinux-tools/epel-8-$basearch/
+        gpgcheck: true
+        gpgkey: https://download.copr.fedorainfracloud.org/results/nalika/circlelinux-tools/pubkey.gpg
+        enabled: true
 
   roles:
-    - role: rockylinux.ipagetcert
+    - role: circlelinux.sigul
       state: present
-      when: rabbitmq_private
 
-    - role: rockylinux.rabbitmq
+    - role: circlelinux.ipagetcert
       state: present
 
   post_tasks:
+    - name: Enable the sigul bridge
+      systemd:
+        name: sigul_bridge
+        state: restarted
+        enabled: true
+
     - name: Touching run file that ansible has ran here
       file:
         path: /var/log/ansible.run

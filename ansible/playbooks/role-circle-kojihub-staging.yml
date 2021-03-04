@@ -6,7 +6,7 @@
   vars_files:
   - vars/vaults/encpass.yml
   - vars/common.yml
-  - vars/staging/kojid.yml
+  - vars/staging/kojihub.yml
   - vars/staging/koji-common.yml
 
   # This is to try to avoid the handler issue in pre/post tasks
@@ -26,16 +26,37 @@
         success_msg: "We are able to run on this node"
         fail_msg: "/etc/no-ansible exists - skipping run on this node"
 
-    - name: Check for keytabs - kojid
+    - name: Check for keytabs - web
       stat:
-        path: /etc/kojid.keytab
-      register: kojid_keytab_check
+        path: /etc/keytabs/koji-web.keytab
+      register: koji_keytab
+      changed_when: "1 != 1"
+
+    - name: Check for keytabs - kojira
+      stat:
+        path: /etc/keytabs/kojira.keytab
+      register: kojira_keytab
+      changed_when: "1 != 1"
+
+    - name: Check for keytabs - gc
+      stat:
+        path: /etc/keytabs/koji-gc.keytab
+      register: gc_keytab
+      changed_when: "1 != 1"
+
+    - name: Check for keytabs - host
+      stat:
+        path: /etc/keytabs/host.keytab
+      register: host_keytab
       changed_when: "1 != 1"
 
     - name: Verify keytab
       assert:
         that:
-          - "kojid_keytab_check.stat.exists"
+          - "koji_keytab.stat.exists"
+          - "kojira_keytab.stat.exists"
+          - "gc_keytab.stat.exists"
+          - "host_keytab.stat.exists"
         success_msg: "It is likely we have all keytabs"
         fail_msg: "There are no keytabs. Please build the keytabs."
 
@@ -59,14 +80,14 @@
       tags:
         - packages
 
-    - name: Install rocky-tools copr
+    - name: Install circle-tools copr
       yum_repository:
-        name: copr:copr.fedorainfracloud.org:nalika:rockylinux-tool
-        description: Copr repo for rockylinux-tools owned by nalika
+        name: copr:copr.fedorainfracloud.org:nalika:circlelinux-tool
+        description: Copr repo for circlelinux-tools owned by nalika
         file: copr_repos
-        baseurl: https://download.copr.fedorainfracloud.org/results/nalika/rockylinux-tools/epel-8-$basearch/
+        baseurl: https://download.copr.fedorainfracloud.org/results/nalika/circlelinux-tools/epel-8-$basearch/
         gpgcheck: true
-        gpgkey: https://download.copr.fedorainfracloud.org/results/nalika/rockylinux-tools/pubkey.gpg
+        gpgkey: https://download.copr.fedorainfracloud.org/results/nalika/circlelinux-tools/pubkey.gpg
         enabled: true
 
   # Right now, we are not sure how or where we'll get our certificates. So we
@@ -74,7 +95,19 @@
   # change that we will have to do internal certs for mqtt anyway.
   # TODO: We need an MQTT role and pre_tasks for the keytabs for this role
   roles:
-    - role: rockylinux.kojid
+    - role: geerlingguy.certbot
+      state: present
+      when: not koji_internal_ca
+
+    - role: circlelinux.ipagetcert
+      state: present
+      when: koji_internal_ca
+
+    - role: geerlingguy.postgresql
+      state: present
+      when: koji_postgresql_vm
+
+    - role: circlelinux.kojihub
       state: present
 
   post_tasks:

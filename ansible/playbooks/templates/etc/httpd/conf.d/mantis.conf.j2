@@ -1,7 +1,7 @@
 <VirtualHost *:80>
-  ServerAdmin infrastructure@rockylinux.org
+  ServerAdmin infrastructure@cclinux.org
   DocumentRoot "/var/www/mantisbt-{{ mantis_version }}"
-  ServerName bugs.rockylinux.org
+  ServerName bugs.cclinux.org
   TransferLog /var/log/httpd/mantis_access.log
   ErrorLog /var/log/httpd/mantis_error.log
   <Directory "/var/www/mantisbt-{{ mantis_version }}/">
@@ -17,11 +17,11 @@
   SSLHonorCipherOrder on
   SSLCipherSuite PROFILE=SYSTEM
   SSLProxyCipherSuite PROFILE=SYSTEM
-  SSLCertificateFile /etc/pki/tls/certs/bugs.rockylinux.org.crt
-  SSLCertificateKeyFile /etc/pki/tls/private/bugs.rockylinux.org.key
-  ServerAdmin infrastructure@rockylinux.org
+  SSLCertificateFile /etc/pki/tls/certs/bugs.cclinux.org.crt
+  SSLCertificateKeyFile /etc/pki/tls/private/bugs.cclinux.org.key
+  ServerAdmin infrastructure@cclinux.org
   DocumentRoot "/var/www/mantisbt-{{ mantis_version }}"
-  ServerName bugs.rockylinux.org
+  ServerName bugs.cclinux.org
   TransferLog /var/log/httpd/mantis_access.log
   ErrorLog /var/log/httpd/mantis_error.log
   <Directory "/var/www/mantisbt-{{ mantis_version }}/">

@@ -2,4 +2,4 @@
 # Build sys
 smtp_user_name: "username"
 smtp_user_pass: "password"
-smtp_relayhost: "smtp.rockylinux.org"
+smtp_relayhost: "smtp.cclinux.org"

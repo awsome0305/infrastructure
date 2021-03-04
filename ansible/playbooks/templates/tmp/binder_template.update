@@ -1,4 +1,4 @@
-dn: uid={{ ipa_binder_name }},cn=sysaccounts,cn=etc,dc=rockylinux,dc=org
+dn: uid={{ ipa_binder_name }},cn=sysaccounts,cn=etc,dc=cclinux,dc=org
 add:objectclass:account
 add:objectclass:simplesecurityobject
 add:uid:{{ ipa_binder_name }}

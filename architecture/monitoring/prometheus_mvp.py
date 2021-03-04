@@ -23,7 +23,7 @@ with Diagram("Prometheus MVP",
              graph_attr=graph_attr,
              node_attr=node_attr):
 
-    with Cluster("Rocky VPC"):
+    with Cluster("Circle VPC"):
         with Cluster("AWS services"):
             aws_group = [
                     EC2("service01"),
@@ -41,10 +41,10 @@ with Diagram("Prometheus MVP",
                     label="ec2 read permissions") >> General("AWS API")
 
     alertmanager >> Edge(style="dashed",
-                         label="non-critical") >> Slack("rocky-alerts")
+                         label="non-critical") >> Slack("circle-alerts")
     alertmanager >> Edge(style="dashed",
                          label="critical") >> Pushover("tbd")
-    ELB("metrics.rockylinux.org") >> Edge(label="TCP3000") >> dashboard
+    ELB("metrics.circlelinux.org") >> Edge(label="TCP3000") >> dashboard
     with Cluster("Cloudvider"):
         cloudvider_group = [
                 Server("server01"),

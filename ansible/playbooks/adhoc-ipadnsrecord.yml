@@ -5,8 +5,8 @@
 # What is expected:
 #  -> ipaadmin_password: This should be the password of the admin user
 #  -> ipa_admin: The admin user that has kerberos management capabilities (default is admin)
-#  -> ipa_zone: The zone name (eg, rockylinux.org)
-#  -> ipa_name: The shortname (eg, buildbox instead of buildbox.rockylinux.org)
+#  -> ipa_zone: The zone name (eg, cclinux.org)
+#  -> ipa_name: The shortname (eg, buildbox instead of buildbox.cclinux.org)
 #  -> ipa_name_type: Type of record (eg, CNAME, A, AAAA, PTR)
 #  -> ipa_name_value: Record value (depends on type of record)
 #  -> ipa_presence: present or absent

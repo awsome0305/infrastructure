@@ -18,7 +18,7 @@
 
 - name: Deploy configuration
   template:
-    src: chrony.conf.j2
+    src: templates/etc/chrony.conf.j2
     dest: "{{ chrony_config_file }}"
     owner: "{{ chrony_owner }}"
     group: "{{ chrony_group }}"

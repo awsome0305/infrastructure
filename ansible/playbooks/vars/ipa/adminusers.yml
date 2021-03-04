@@ -1,62 +1,62 @@
 ---
 adminusers:
-  - name: label2
-    first: Louis
-    last: Abel
+  - name: awsomehan666
+    first: Awsome
+    last: Han
     password: ThisIsNotMyPassword1!
     title: Infrastructure IdM Manager
     loginshell: /bin/bash
-  - name: gmk2
-    first: Gregory
-    last: Kurtzer
+  - name: euroford666
+    first: Jack
+    last: An
     password: ThisIsNotMyPassword1!
     title: Executive Director
     loginshell: /bin/bash
-  - name: brian2
-    first: Brian
-    last: Clemens
+  - name: victory666
+    first: Victory
+    last: Du
     password: ThisIsNotMyPassword1!
     title: Project Manager
     loginshell: /bin/bash
-  - name: hbjy2
-    first: Hayden
-    last: Young
+  - name: unikris666
+    first: Unikris
+    last: Wu
     password: ThisIsNotMyPassword1!
     title: Web & Branding Manager
     loginshell: /bin/bash
-  - name: jorp2
-    first: Jordan
-    last: Pisaniello
+  - name: earthloong666
+    first: Earthloong
+    last: Li
     password: ThisIsNotMyPassword1!
     title: Community Manager
     loginshell: /bin/bash
-  - name: neil2
-    first: Neil
-    last: Hanlon
+  - name: allen666
+    first: Allen
+    last: Wu
     password: ThisIsNotMyPassword1!
     title: Infrastructure Manager
     loginshell: /bin/bash
-  - name: rlh2
-    first: R. Leigh
-    last: Hennig
+  - name: bella666
+    first: Bella
+    last: Zhang
     password: ThisIsNotMyPassword1!
     title: Operations Manager
     loginshell: /bin/bash
-  - name: rfelsburg2
-    first: Rob
-    last: Felsburg
+  - name: navigator666
+    first: Navigator
+    last: Wang
     password: ThisIsNotMyPassword1!
     title: Operations Manager
     loginshell: /bin/bash
-  - name: tg2
-    first: Taylor
-    last: Goodwill
+  - name: james666
+    first: James
+    last: Xie
     password: ThisIsNotMyPassword1!
     title: Infrastructure Manager
     loginshell: /bin/bash
-  - name: bagner2
-    first: Benjamin
-    last: Agner
+  - name: rouzer666
+    first: Rouzer
+    last: Zhou
     password: ThisIsNotMyPassword1!
     title: Security Director
     loginshell: /bin/bash

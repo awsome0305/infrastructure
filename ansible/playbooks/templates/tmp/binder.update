@@ -1,4 +1,4 @@
-dn: uid=binder,cn=sysaccounts,cn=etc,dc=rockylinux,dc=org
+dn: uid=binder,cn=sysaccounts,cn=etc,dc=cclinux,dc=org
 add:objectclass:account
 add:objectclass:simplesecurityobject
 add:uid:binder

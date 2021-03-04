@@ -130,12 +130,12 @@ collections:
 
 **Note**: There will be cases where you should and must specify the version you're working with, depending on the author and the amount of changes that may occur. There may be a future policy that you have to lock onto a specific version.
 
-Custom roles for infrastructure use will have their own separate repository. Right now, we do not have a Ansible Galaxy presence. For this, when referencing roles under Rocky Linux, you will have to specify its location and follow the naming format. Example below.
+Custom roles for infrastructure use will have their own separate repository. Right now, we do not have a Ansible Galaxy presence. For this, when referencing roles under Circle Linux, you will have to specify its location and follow the naming format. Example below.
 
 ```
 roles:
-  - name: rockylinux.ipsilon
-    src: https://github.com/rocky-linux/ansible-role-ipsilon
+  - name: circlelinux.ipsilon
+    src: https://github.com/circle-linux/ansible-role-ipsilon
     version: main
 ```
 
@@ -150,7 +150,7 @@ If you have to make your own role, that's understandable. There's going to be ca
 
 The pre-commit, yamllint, and ansible-lint configurations of this repository is a good starting point for your role.
 
-Right now, this is a good template to start with: https://github.com/Darkbat91/ansible-roletemplate - This will soon be under the rocky-linux umbrella.
+Right now, this is a good template to start with: https://github.com/Darkbat91/ansible-roletemplate - This will soon be under the circle-linux umbrella.
 
 ### Pre-commits / linting
 
@@ -160,12 +160,12 @@ When the linter passes, the push will complete and you will be able to open a PR
 
 ## Initializing the Ansible Host
 
-When initializing the ansible host, you should be in `./infrastructure/ansible` so that the `ansible.cfg` is used. You will need to run the `init-rocky-ansible-host.yml` playbook and to get started, which will install all the roles and collections required for the playbooks to run.
+When initializing the ansible host, you should be in `./infrastructure/ansible` so that the `ansible.cfg` is used. You will need to run the `init-circle-ansible-host.yml` playbook and to get started, which will install all the roles and collections required for the playbooks to run.
 
 ```
-% git clone https://github.com/rocky-linux/infrastructure
+% git clone https://github.com/circle-linux/infrastructure
 % cd infrastructure/ansible
-% ansible-playbook playbooks/init-rocky-ansible-host.yml
+% ansible-playbook playbooks/init-circle-ansible-host.yml
 ```
 
 ## Initializing the environment
@@ -174,18 +174,18 @@ To get a base environment, you will need to run the playbooks in this order.
 
 ```
 # Ansible host
-init-rocky-ansible-host.yml
+init-circle-ansible-host.yml
 # First IPA server
-role-rocky-ipa.yml
+role-circle-ipa.yml
 # Replicas
-role-rocky-ipa-replica.yml
+role-circle-ipa-replica.yml
 # Base users, groups, and DNS
-init-rocky-ipa-team.yml
-init-rocky-ipa-internal-dns.yml
+init-circle-ipa-team.yml
+init-circle-ipa-internal-dns.yml
 # All clients should be listed under [ipaclients]
-role-rocky-ipa-client.yml
+role-circle-ipa-client.yml
 # All systems should be hardened
-init-rocky-system-config.yml
+init-circle-system-config.yml
 ```
 
 ## Current Set
@@ -247,14 +247,14 @@ init-rocky-system-config.yml
 │   │   ├── etc
 │   │   │   ├── authselect
 │   │   │   │   └── custom
-│   │   │   │       └── sssd-rocky
+│   │   │   │       └── sssd-circle
 │   │   │   │           ├── CentOS-8-system-auth -> RedHat-8-system-auth
 │   │   │   │           └── RedHat-8-system-auth
 │   │   │   ├── gitlab
 │   │   │   ├── pam.d
 │   │   │   │   ├── CentOS-7-system-auth-ac -> RedHat-7-system-auth-ac
 │   │   │   │   └── RedHat-7-system-auth-ac
-│   │   │   ├── rockybanner
+│   │   │   ├── circlebanner
 │   │   │   └── sudoers.d
 │   │   │       └── cis
 │   │   ├── tmp
@@ -264,35 +264,35 @@ init-rocky-system-config.yml
 │   │               └── lock-wrapper
 │   ├── handlers
 │   │   └── main.yml
-│   ├── import-rockygroups.yml
-│   ├── import-rockyipaprivs.yml
-│   ├── import-rockypwpolicy.yml
-│   ├── import-rockysudo.yml
-│   ├── import-rockyusers.yml
-│   ├── init-rocky-account-services.yml
-│   ├── init-rocky-ansible-host.yml
-│   ├── init-rocky-bugzilla.yml
-│   ├── init-rocky-builder-postfix.yml
-│   ├── init-rocky-chrony.yml
-│   ├── init-rocky-install-kvm-hosts.yml
-│   ├── init-rocky-ipa-internal-dns.yml
-│   ├── init-rocky-ipa-team.yml
-│   ├── init-rocky-noggin-theme.yml
-│   ├── init-rocky-system-config.yml
-│   ├── rocky-rocky-gitlab-ee.yml
-│   ├── role-rocky-graylog.yml
-│   ├── role-rocky-ipa-client.yml
-│   ├── role-rocky-ipa-replica.yml
-│   ├── role-rocky-ipa.yml
-│   ├── role-rocky-ipsilon.yml
-│   ├── role-rocky-kojid.yml
-│   ├── role-rocky-kojihub.yml
-│   ├── role-rocky-monitoring.yml
-│   ├── role-rocky-mqtt.yml
-│   ├── role-rocky-node_exporter.yml
-│   ├── role-rocky-rabbitmq.yml
-│   ├── role-rocky-sigul-bridge.yml
-│   ├── role-rocky-sigul-server.yml
+│   ├── import-circlegroups.yml
+│   ├── import-circleipaprivs.yml
+│   ├── import-circlepwpolicy.yml
+│   ├── import-circlesudo.yml
+│   ├── import-circleusers.yml
+│   ├── init-circle-account-services.yml
+│   ├── init-circle-ansible-host.yml
+│   ├── init-circle-bugzilla.yml
+│   ├── init-circle-builder-postfix.yml
+│   ├── init-circle-chrony.yml
+│   ├── init-circle-install-kvm-hosts.yml
+│   ├── init-circle-ipa-internal-dns.yml
+│   ├── init-circle-ipa-team.yml
+│   ├── init-circle-noggin-theme.yml
+│   ├── init-circle-system-config.yml
+│   ├── circle-circle-gitlab-ee.yml
+│   ├── role-circle-graylog.yml
+│   ├── role-circle-ipa-client.yml
+│   ├── role-circle-ipa-replica.yml
+│   ├── role-circle-ipa.yml
+│   ├── role-circle-ipsilon.yml
+│   ├── role-circle-kojid.yml
+│   ├── role-circle-kojihub.yml
+│   ├── role-circle-monitoring.yml
+│   ├── role-circle-mqtt.yml
+│   ├── role-circle-node_exporter.yml
+│   ├── role-circle-rabbitmq.yml
+│   ├── role-circle-sigul-bridge.yml
+│   ├── role-circle-sigul-server.yml
 │   ├── tasks
 │   │   ├── account_services.yml
 │   │   ├── auditd.yml
@@ -316,7 +316,7 @@ init-rocky-system-config.yml
 │   │   │   │       └── collection.rules.j2
 │   │   │   ├── chrony.conf.j2
 │   │   │   ├── gitlab
-│   │   │   │   └── rocky_gitlab.rb
+│   │   │   │   └── circle_gitlab.rb
 │   │   │   ├── httpd
 │   │   │   │   └── conf.d
 │   │   │   │       ├── id.conf.j2

@@ -1,6 +1,6 @@
 ---
-gitlab_config_template: "etc/gitlab/rocky_gitlab.rb"
-gitlab_domain: git.rockylinux.org
+gitlab_config_template: "etc/gitlab/circle_gitlab.rb"
+gitlab_domain: git.cclinux.org
 gitlab_external_url: "https://{{ gitlab_domain }}/"
 
 # Location where all the git repositories will be stored.
@@ -21,16 +21,16 @@ gitlab_ssl_key: "/etc/nginx/ssl/{{ gitlab_domain }}.key"
 
 # LDAP Configuration
 gitlab_ldap_enabled: "true"
-gitlab_ldap_host: "{{ rocky_ipaserver_lb }}"
+gitlab_ldap_host: "{{ circle_ipaserver_lb }}"
 gitlab_ldap_port: "389"
 gitlab_ldap_uid: "uid"
 gitlab_ldap_method: "start_tls"
-gitlab_ldap_bind_dn: "{{ rocky_ldap_bind_dn }}"
-gitlab_ldap_password: "{{ rocky_ldap_bind_pw }}"
-gitlab_ldap_base: "{{ rocky_ldap_user_basedn }}"
-gitlab_ldap_group_dn: "{{ rocky_ldap_group_basedn }}"
+gitlab_ldap_bind_dn: "{{ circle_ldap_bind_dn }}"
+gitlab_ldap_password: "{{ circle_ldap_bind_pw }}"
+gitlab_ldap_base: "{{ circle_ldap_user_basedn }}"
+gitlab_ldap_group_dn: "{{ circle_ldap_group_basedn }}"
 gitlab_ldap_admin_group: "gitadm"
-gitlab_ldap_user_filter: "(&(objectClass=posixAccount)(memberOf=cn=gitusers,cn=groups,cn=accounts,dc=rockylinux,dc=org))"
+gitlab_ldap_user_filter: "(&(objectClass=posixAccount)(memberOf=cn=gitusers,cn=groups,cn=accounts,dc=cclinux,dc=org))"
 
 gitlab_time_zone: "UTC"
 
@@ -40,9 +40,9 @@ gitlab_download_validate_certs: true
 # Email and SMTP configuration (For the future)
 # Email configuration.
 gitlab_email_enabled: "false"
-gitlab_email_from: "gitlab@rockylinux.org"
+gitlab_email_from: "gitlab@cclinux.org"
 gitlab_email_display_name: "Gitlab"
-gitlab_email_reply_to: "gitlab@rockylinux.org"
+gitlab_email_reply_to: "gitlab@cclinux.org"
 # SMTP configuration
 gitlab_smtp_enable: "false"
 gitlab_smtp_address: "smtp.gmail.com"
@@ -64,7 +64,7 @@ gitlab_nginx_listen_https: "false"
 gitlab_default_theme: 2
 
 gitlab_external_db: true
-gitlab_external_db_host: db.rockylinux.org
+gitlab_external_db_host: db.cclinux.org
 gitlab_external_db_user: gitlab
 gitlab_external_db_password: "{{ gitlab_db_pass }}"
 

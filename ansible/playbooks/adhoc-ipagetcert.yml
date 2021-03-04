@@ -28,5 +28,5 @@
     ipa_getcert_nss: "{{ getcert_nss|default(false) }}"
 
   roles:
-    - role: rockylinux.ipagetcert
+    - role: circlelinux.ipagetcert
       state: present

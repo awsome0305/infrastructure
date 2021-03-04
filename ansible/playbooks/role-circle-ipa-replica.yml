@@ -1,11 +1,11 @@
 ---
-# Stands up an mqtt instance
-- name: Configure mqtt
-  hosts: kojihub
+# Creates an IPA replica
+# Define "host" as a hostgroup name or a single host
+- name: Configure IPA server
+  hosts: ipareplicas
   become: true
   vars_files:
   - vars/vaults/encpass.yml
-  - vars/mqtt.yml
 
   # This is to try to avoid the handler issue in pre/post tasks
   handlers:
@@ -24,31 +24,23 @@
         success_msg: "We are able to run on this node"
         fail_msg: "/etc/no-ansible exists - skipping run on this node"
 
-    # EPEL and PowerTools are required for ipsilon to function
-    # I also couldn't find an ansible built-in to do this
-    - name: Enable the PowerTools repository
+    - name: Ensure 'dns=none' is set for Network Manager
       ini_file:
-        dest: /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
-        section: powertools
-        option: enabled
-        value: 1
+        path: /etc/NetworkManager/NetworkManager.conf
+        state: present
+        no_extra_spaces: true
+        section: main
+        option: dns
+        value: none
         owner: root
         group: root
         mode: '0644'
-
-    # The CentOS extras repos has epel-release provided
-    - name: Enable the EPEL repository
-      yum:
-        name: epel-release
-        state: present
-      tags:
-        - packages
+        backup: true
+      notify:
+        - reload_networkmanager
 
   roles:
-    - role: rockylinux.ipagetcert
-      state: present
-
-    - role: rockylinux.mqtt
+    - role: freeipa.ansible_freeipa.ipareplica
       state: present
 
   post_tasks:
