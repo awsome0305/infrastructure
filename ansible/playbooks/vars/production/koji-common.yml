@@ -1,13 +1,12 @@
 ---
 # Koji common
-koji_efs_mount_path: /mnt/koji
-koji_efs_fsid: whatever.amazonaws.com
-koji_efs_fs_ip_map:
-  us-east-2a: 10.x.x.x
-  us-east-2b: 10.x.x.x
-  us-east-2c: 10.x.x.x
-koji_efs_fs_type: efs
-koji_efs_fs_opts:
-  - _netdev
-  - tls
-  - iam
+koji_nfs_mount_path: /mnt/koji
+koji_nfs_hostname: nfs.hostname.org
+koji_nfs_ip: 192.x.x.x
+koji_nfs_dir: /koji
+koji_nfs_fs_type: nfs
+koji_nfs_fs_opts:
+  - ro
+  - sync
+  - no_all_squash
+  - root_squash

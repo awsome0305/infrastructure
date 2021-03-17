@@ -22,5 +22,5 @@
 - name: Enable and start
   systemd:
     name: httpd
-    state: running
+    state: restarted
     enabled: true

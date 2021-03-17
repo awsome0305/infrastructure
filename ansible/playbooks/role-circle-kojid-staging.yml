@@ -61,12 +61,12 @@
 
     - name: Install circle-tools copr
       yum_repository:
-        name: copr:copr.fedorainfracloud.org:nalika:circlelinux-tool
-        description: Copr repo for circlelinux-tools owned by nalika
+        name: copr:copr.fedorainfracloud.org:james6xie:circlelinux-tools
+        description: Copr repo for circlelinux-tools owned by james6xie
         file: copr_repos
-        baseurl: https://download.copr.fedorainfracloud.org/results/nalika/circlelinux-tools/epel-8-$basearch/
+        baseurl: https://download.copr.fedorainfracloud.org/results/james6xie/circlelinux-tools/epel-8-$basearch/
         gpgcheck: true
-        gpgkey: https://download.copr.fedorainfracloud.org/results/nalika/circlelinux-tools/pubkey.gpg
+        gpgkey: https://download.copr.fedorainfracloud.org/results/james6xie/circlelinux-tools/pubkey.gpg
         enabled: true
 
   # Right now, we are not sure how or where we'll get our certificates. So we

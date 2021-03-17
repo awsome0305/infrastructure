@@ -55,6 +55,7 @@ ipagroups:
       - navigator
       - james
       - unikris
+      - earthloong
   - group: gitusers
     description: Circle Linux GitLab Users
     user:
@@ -64,6 +65,7 @@ ipagroups:
       - navigator
       - james
       - unikris
+      - earthloong
       - circleautomation
     managers_users:
       - awsomehan
@@ -72,6 +74,7 @@ ipagroups:
       - navigator
       - james
       - unikris
+      - earthloong
   - group: services
     description: Circle Linux Service Accounts
     user:

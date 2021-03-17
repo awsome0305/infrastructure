@@ -1,7 +1,7 @@
 ---
 # Stands up an ipsilon instance for simple SSO
 - name: Configure ipsilon server
-  hosts: ipsilon
+  hosts: "{{host}}"
   become: true
   vars_files:
   - vars/vaults/encpass.yml
@@ -65,7 +65,7 @@
     - name: Start and enable httpd
       service:
         name: httpd
-        state: running
+        state: restarted
         enabled: true
 
     - name: Touching run file that ansible has ran here

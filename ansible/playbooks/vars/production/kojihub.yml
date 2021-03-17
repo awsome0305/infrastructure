@@ -1,7 +1,7 @@
 ---
 # koji hub settings
 # This should be the front-facing URL of koji
-#koji_url_name: koji.cclinux.org
+koji_url_name: koji.cclinux.org
 
 # Use an internal CA (IPA)
 koji_internal_ca: true
@@ -100,7 +100,7 @@ postgresql_hba_entries:
   - type: host
     database: koji
     user: koji
-    address: '10.100.1.0/24'
+    address: '192.168.0.0/24'
     auth_method: md5
 
 postgresql_databases:
