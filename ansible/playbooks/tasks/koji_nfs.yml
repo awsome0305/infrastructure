@@ -1,0 +1,29 @@
+---
+# Sets up the NFS mount for /mnt/koji {{ koji_nfs_mount_path }}
+# Requires nfs-utils; included
+#
+- name: Installing nfs-utils
+  yum:
+    name: nfs-utils
+    state: present
+  tags:
+    - nfs_utils
+    - packages
+
+- name: "Install custom hosts file."
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: "{{ koji_nfs_ip }} {{ koji_nfs_hostname }}"
+    create: yes
+  tags:
+    - mounts
+
+- name: "Creating and mounting {{ koji_nfs_hostname }} at {{ koji_nfs_mount_path }}"
+  ansible.posix.mount:
+    path: "{{ koji_nfs_mount_path }}"
+    src: "{{ koji_nfs_hostname }}:{{ koji_nfs_dir }}"
+    fstype: "{{ koji_nfs_fs_type }}"
+    #opts: "{{ koji_nfs_fs_opts | join(',') }}"
+    state: "{{ koji_nfs_fs_state | default('mounted') }}"
+  tags:
+    - mounts
